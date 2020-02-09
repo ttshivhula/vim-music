@@ -1,4 +1,4 @@
-function Trim_whitespace(target)
+function! Trim_whitespace(target)
 	let target = substitute(a:target, "^\\s\\+\\|\\s\\+$", "", "g")
 	let target = substitute(target, "^\\n\\+\\|\\n\\+$", "", "g")
 	return target
