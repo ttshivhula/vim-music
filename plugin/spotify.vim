@@ -5,6 +5,8 @@ if exists('g:vimifyInited')
 endif
 let g:vimifyInited = 0
 
+let g:spotify_market = get(g:, 'spotify_market', 'US')
+
 python3 << endpython
 import subprocess
 import os
@@ -215,7 +217,8 @@ auth_resp = urllib.request.urlopen(auth_req)
 auth_code = json.loads(auth_resp.read())["access_token"]
 
 search_query = vim.eval("a:query").replace(' ', '+')
-url = "https://api.spotify.com/v1/search?q={}&market=ZA&type=track".format(search_query)
+spotify_market = vim.eval("g:spotify_market")
+url = "https://api.spotify.com/v1/search?&market={}".format(spotify_market)+"&type=track&q={}".format(search_query)
 req = urllib.request.Request(url,)
 req.add_header('Authorization', "Bearer {}".format(auth_code))
 resp = urllib.request.urlopen(req)
