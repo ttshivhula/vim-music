@@ -215,7 +215,7 @@ auth_resp = urllib.request.urlopen(auth_req)
 auth_code = json.loads(auth_resp.read())["access_token"]
 
 search_query = vim.eval("a:query").replace(' ', '+')
-url = "https://api.spotify.com/v1/search?q={}&type=track".format(search_query)
+url = "https://api.spotify.com/v1/search?q={}&market=ZA&type=track".format(search_query)
 req = urllib.request.Request(url,)
 req.add_header('Authorization', "Bearer {}".format(auth_code))
 resp = urllib.request.urlopen(req)
